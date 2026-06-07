@@ -116,6 +116,20 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
+    // --- Infinite Carousel Logic ---
+    const carouselTrack = document.querySelector('#carousel-track');
+    if (carouselTrack) {
+        // Clone items for infinite effect
+        const items = Array.from(carouselTrack.children);
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            carouselTrack.appendChild(clone);
+        });
+        
+        // Re-initialize Lucide icons for clones
+        lucide.createIcons();
+    }
+
     // --- Accordion Logic ---
     const accordions = document.querySelectorAll('.accordion-item');
     
