@@ -6,295 +6,460 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="RG Imóveis — Especialistas em imóveis residenciais em Luziânia e região. Encontre, compre ou alugue com atendimento personalizado e transparente.">
   <title>RG Imóveis — Especialistas em Imóveis Residenciais</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#8B0A1E',
+              dark: '#6B0818',
+              light: '#F5E6E9',
+            },
+            ink: {
+              DEFAULT: '#111111',
+              soft: '#2D2D2D',
+              light: '#4A4A4A',
+            },
+            accent: '#E8637A',
+            cream: '#FAF9F6',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['DM Sans', 'sans-serif'],
+          },
+          transitionTimingFunction: {
+            'smooth': 'cubic-bezier(0.16, 1, 0.3, 1)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .mask-radial {
+        mask-image: radial-gradient(circle at center, black, transparent 80%);
+      }
+      .transition-smooth {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        transition-duration: 600ms;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="font-sans text-ink-soft bg-white antialiased overflow-x-hidden">
 
-  <nav aria-label="Navegação principal">
-    <div class="nav-inner">
-      <a class="logo" href="#">
-        <img class="logo-img" src="assets/logo.png" alt="Logotipo RG Imóveis" loading="lazy" decoding="async">
-        <span class="logo-text">RG <span>Imóveis</span></span>
+  <nav class="fixed top-0 left-0 w-full z-[1000] px-[8%] py-6 transition-smooth">
+    <div class="flex items-center justify-between">
+      <a class="flex items-center gap-3" href="#">
+        <img class="h-12 w-auto" src="assets/logo.png" alt="Logotipo RG Imóveis">
+        <span class="font-serif font-black text-2xl tracking-tighter text-ink">RG <span class="text-primary">Imóveis</span></span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#">Início</a></li>
-        <li><a href="#imoveis">Comprar</a></li>
-        <li><a href="#imoveis">Alugar</a></li>
-        <li><a href="#porque">Sobre nós</a></li>
-        <li><a href="#contato">Contato</a></li>
+      <ul class="hidden md:flex gap-10">
+        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#">Início</a></li>
+        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#imoveis">Comprar</a></li>
+        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#imoveis">Alugar</a></li>
+        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#porque">Sobre nós</a></li>
+        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#contato">Contato</a></li>
       </ul>
-      <button type="button" class="nav-cta">Fale Conosco</button>
+      <button type="button" class="bg-ink text-white px-7 py-3 font-semibold text-sm rounded-sm hover:bg-primary transition-smooth transform hover:-translate-y-0.5">Fale Conosco</button>
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-lion"><img src="assets/hero-lion.png" alt="Ilustração de casa e clientes" loading="lazy" decoding="async"></div>
-    <div class="hero-content">
-      <div class="hero-badge">Especialistas em imóveis residenciais</div>
-      <h1>Encontre o lar <em>perfeito</em> para sua família</h1>
-      <p>A RG Imóveis conecta você aos melhores imóveis residenciais com atendimento personalizado e total transparência
-        em cada etapa.</p>
-      <div class="hero-actions">
-        <button type="button" class="btn-primary">Ver imóveis disponíveis</button>
-        <button type="button" class="btn-outline">Quero vender meu imóvel</button>
+  <section class="relative min-h-screen flex items-center bg-ink text-white px-[8%] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,#2A060E_0%,#111111_70%)]"></div>
+    <div class="absolute inset-0 opacity-10 bg-[length:60px_60px] mask-radial" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);"></div>
+    
+    <div class="absolute -right-[5%] top-1/2 -translate-y-1/2 w-[40%] max-w-[700px] opacity-25 mix-blend-soft-light grayscale pointer-events-none animate-[float_10s_ease-in-out_infinite]">
+        <img src="assets/hero-lion.png" alt="Leão RG Imóveis" class="w-full">
+    </div>
+
+    <div class="relative z-10 max-w-[800px]">
+      <div class="bg-primary/20 border border-primary/50 text-accent px-5 py-2 text-xs font-bold uppercase tracking-[2px] inline-block mb-8 backdrop-blur-md">
+        Expertise em Imóveis Residenciais
       </div>
-      <div class="hero-stats">
+      <h1 class="font-serif text-5xl md:text-7xl lg:text-[92px] leading-[0.95] mb-8 font-bold text-white">
+        Onde sua nova história <em class="italic font-normal text-accent">começa</em>
+      </h1>
+      <p class="text-xl font-light text-white/70 max-w-[540px] mb-12">
+        Encontre o lar perfeito em Luziânia e região com quem entende de transparência, segurança e atendimento personalizado.
+      </p>
+      <div class="flex flex-wrap gap-5">
+        <button type="button" class="bg-primary text-white px-10 py-[18px] font-bold tracking-wide text-base hover:bg-white hover:text-ink transition-smooth">Explorar Imóveis</button>
+        <button type="button" class="bg-transparent text-white border border-white/30 px-10 py-[18px] font-semibold hover:border-white hover:bg-white/5 transition-smooth">Vender meu Imóvel</button>
+      </div>
+      
+      <div class="flex gap-10 md:gap-[60px] mt-20 pt-10 border-t border-white/10">
         <div class="stat-item">
-          <div class="stat-n">500<sup>+</sup></div>
-          <div class="stat-l">Imóveis negociados</div>
+          <div class="font-serif text-4xl md:text-5xl font-bold text-white">500<sup class="text-2xl text-accent top-[-0.5em]">+</sup></div>
+          <div class="text-[10px] md:text-xs text-white/50 uppercase tracking-[1.5px] mt-1">Imóveis negociados</div>
         </div>
         <div class="stat-item">
-          <div class="stat-n">12<sup>+</sup></div>
-          <div class="stat-l">Anos de mercado</div>
+          <div class="font-serif text-4xl md:text-5xl font-bold text-white">12<sup class="text-2xl text-accent top-[-0.5em]">+</sup></div>
+          <div class="text-[10px] md:text-xs text-white/50 uppercase tracking-[1.5px] mt-1">Anos de mercado</div>
         </div>
         <div class="stat-item">
-          <div class="stat-n">98<sup>%</sup></div>
-          <div class="stat-l">Clientes satisfeitos</div>
+          <div class="font-serif text-4xl md:text-5xl font-bold text-white">98<sup class="text-2xl text-accent top-[-0.5em]">%</sup></div>
+          <div class="text-[10px] md:text-xs text-white/50 uppercase tracking-[1.5px] mt-1">Clientes satisfeitos</div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="hero-bottom">
-    <form role="search" method="get" action="#" class="search-bar" aria-label="Busca de imóveis">
-      <div class="search-field"><label for="tipo-imovel">Tipo de imóvel</label><select id="tipo-imovel" name="tipo">
-          <option>Casa</option>
-          <option>Apartamento</option>
-          <option>Cobertura</option>
-        </select></div>
-      <div class="search-field"><label for="finalidade">Finalidade</label><select id="finalidade" name="finalidade">
-          <option>Comprar</option>
-          <option>Alugar</option>
-        </select></div>
-      <div class="search-field"><label for="bairro-cidade">Bairro / Cidade</label><input id="bairro-cidade" name="bairro_cidade" type="text" placeholder="Ex: Luziânia, Valparaíso..."></div>
-      <div class="search-field" style="max-width:140px"><label for="quartos">Quartos</label><select id="quartos" name="quartos">
-          <option>Qualquer</option>
-          <option>1+</option>
-          <option>2+</option>
-          <option>3+</option>
-          <option>4+</option>
-        </select></div>
-      <button type="submit" class="btn-search">🔍 Buscar</button>
+  <div class="bg-ink pb-20 md:pb-[120px]">
+    <form role="search" method="get" action="#" class="bg-white p-8 md:p-10 mx-[8%] relative z-20 flex flex-col md:flex-row gap-6 md:gap-8 shadow-[0_30px_60px_rgba(0,0,0,0.15)] items-stretch">
+      
+      <!-- Tipo de Imóvel -->
+      <div class="flex-1 relative group">
+        <label for="tipo-imovel" class="block text-[11px] font-extrabold text-gray-400 uppercase tracking-[1.5px] mb-2 transition-colors group-focus-within:text-primary">Tipo de imóvel</label>
+        <div class="relative">
+          <select id="tipo-imovel" name="tipo" class="w-full pl-0 pr-8 py-3 border-0 border-b border-gray-200 text-base font-sans outline-none focus:ring-0 focus:border-primary transition-all bg-transparent appearance-none cursor-pointer">
+            <option>Casa</option>
+            <option>Apartamento</option>
+            <option>Cobertura</option>
+          </select>
+          <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finalidade -->
+      <div class="flex-1 relative group">
+        <label for="finalidade" class="block text-[11px] font-extrabold text-gray-400 uppercase tracking-[1.5px] mb-2 transition-colors group-focus-within:text-primary">Finalidade</label>
+        <div class="relative">
+          <select id="finalidade" name="finalidade" class="w-full pl-0 pr-8 py-3 border-0 border-b border-gray-200 text-base font-sans outline-none focus:ring-0 focus:border-primary transition-all bg-transparent appearance-none cursor-pointer">
+            <option>Comprar</option>
+            <option>Alugar</option>
+          </select>
+          <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bairro / Cidade -->
+      <div class="flex-[1.5] relative group">
+        <label for="bairro-cidade" class="block text-[11px] font-extrabold text-gray-400 uppercase tracking-[1.5px] mb-2 transition-colors group-focus-within:text-primary">Bairro / Cidade</label>
+        <div class="relative">
+          <input id="bairro-cidade" name="bairro_cidade" type="text" placeholder="Ex: Luziânia, Valparaíso..." class="w-full pl-0 pr-8 py-3 border-0 border-b border-gray-200 text-base font-sans outline-none focus:ring-0 focus:border-primary transition-all bg-transparent placeholder:text-gray-300">
+          <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+            <i data-lucide="map-pin" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quartos (Re-added for completeness) -->
+      <div class="flex-1 relative group">
+        <label for="quartos" class="block text-[11px] font-extrabold text-gray-400 uppercase tracking-[1.5px] mb-2 transition-colors group-focus-within:text-primary">Quartos</label>
+        <div class="relative">
+          <select id="quartos" name="quartos" class="w-full pl-0 pr-8 py-3 border-0 border-b border-gray-200 text-base font-sans outline-none focus:ring-0 focus:border-primary transition-all bg-transparent appearance-none cursor-pointer">
+            <option>Qualquer</option>
+            <option>1+</option>
+            <option>2+</option>
+            <option>3+</option>
+            <option>4+</option>
+          </select>
+          <div class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-focus-within:text-primary transition-colors">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="bg-ink text-white px-10 h-[60px] font-bold text-[15px] self-end hover:bg-primary transition-smooth flex items-center justify-center gap-3 md:min-w-[160px]">
+        <i data-lucide="search" class="w-5 h-5"></i> Buscar
+      </button>
     </form>
   </div>
 
-  <section class="section" id="imoveis" style="padding-top:120px">
-    <div class="section-header">
-      <div class="section-tag">Destaques da semana</div>
-      <h2 class="section-title">Imóveis selecionados para você</h2>
-      <p class="section-sub">Conheça os imóveis mais procurados, escolhidos pela nossa equipe de corretores
-        especializados.</p>
+  <section class="px-[8%] py-[120px]" id="imoveis">
+    <div class="mb-14 section-header">
+      <span class="text-xs font-bold text-primary uppercase tracking-[3px] mb-4 block">Destaques da semana</span>
+      <h2 class="font-serif text-3xl md:text-5xl mb-6 text-ink">Imóveis selecionados para você</h2>
+      <p class="text-lg text-ink-light max-w-[600px]">Conheça os imóveis mais procurados, escolhidos pela nossa equipe de corretores especializados.</p>
     </div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-img" style="background:linear-gradient(135deg,#8B1A2A,#3D0010)">🏡<span
-            class="card-badge">Aluguel</span>
-          <div class="card-fav">♡</div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Card 1 -->
+      <div class="card group cursor-pointer">
+        <div class="relative h-[480px] w-full overflow-hidden bg-gray-100">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-[#1a0308] to-[#8b0a1e]"></div>
+          <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Aluguel</span>
+          <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+          </button>
         </div>
-        <div class="card-body">
-          <div class="card-price">R$ 2.800 <span style="font-size:13px;font-weight:400;color:var(--gray)">/mês</span>
+        <div class="py-8">
+          <div class="font-serif text-[32px] text-ink mb-2">R$ 2.800 <span class="text-base text-gray-400">/mês</span></div>
+          <h3 class="text-xl font-semibold mb-2">Residência Jardim Europa</h3>
+          <div class="flex items-center gap-1.5 text-sm text-ink-light mb-6">
+            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i> Luziânia, GO
           </div>
-          <div class="card-name">Casa com Quintal — Jardim Europa</div>
-          <div class="card-loc">📍 Luziânia, GO</div>
-          <div class="card-features">
-            <div class="feat">🛏 3 quartos</div>
-            <div class="feat">🚿 2 ban.</div>
-            <div class="feat">📐 180 m²</div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-img" style="background:linear-gradient(135deg,#2C1A3D,#1A0D26)">🏢<span
-            class="card-badge venda">Venda</span>
-          <div class="card-fav">♡</div>
-        </div>
-        <div class="card-body">
-          <div class="card-price">R$ 320.000</div>
-          <div class="card-name">Apartamento 2 dormitórios</div>
-          <div class="card-loc">📍 Valparaíso de Goiás, GO</div>
-          <div class="card-features">
-            <div class="feat">🛏 2 quartos</div>
-            <div class="feat">🚿 1 ban.</div>
-            <div class="feat">📐 72 m²</div>
+          <div class="flex gap-6 pt-6 border-t border-gray-200">
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="bed" class="w-4 h-4"></i> 3 Quartos
+            </div>
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="bath" class="w-4 h-4"></i> 2 Banh.
+            </div>
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="maximize" class="w-4 h-4"></i> 180 m²
+            </div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-img" style="background:linear-gradient(135deg,#1A2A3D,#0D1A2C)">🏘<span
-            class="card-badge venda">Venda</span>
-          <div class="card-fav">♡</div>
+
+      <!-- Card 2 -->
+      <div class="card group cursor-pointer">
+        <div class="relative h-[480px] w-full overflow-hidden bg-gray-100">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-[#111] to-[#444]"></div>
+          <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+          <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+          </button>
         </div>
-        <div class="card-body">
-          <div class="card-price">R$ 580.000</div>
-          <div class="card-name">Casa em Condomínio Fechado</div>
-          <div class="card-loc">📍 Cidade Ocidental, GO</div>
-          <div class="card-features">
-            <div class="feat">🛏 4 quartos</div>
-            <div class="feat">🚿 3 ban.</div>
-            <div class="feat">📐 280 m²</div>
+        <div class="py-8">
+          <div class="font-serif text-[32px] text-ink mb-2">R$ 320.000</div>
+          <h3 class="text-xl font-semibold mb-2">Apartamento Solar das Águas</h3>
+          <div class="flex items-center gap-1.5 text-sm text-ink-light mb-6">
+            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i> Valparaíso de Goiás, GO
+          </div>
+          <div class="flex gap-6 pt-6 border-t border-gray-200">
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="bed" class="w-4 h-4"></i> 2 Quartos
+            </div>
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="bath" class="w-4 h-4"></i> 1 Banh.
+            </div>
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="maximize" class="w-4 h-4"></i> 72 m²
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card group cursor-pointer">
+        <div class="relative h-[480px] w-full overflow-hidden bg-gray-100">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-[#2A060E] to-[#1a0308]"></div>
+          <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+          <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="py-8">
+          <div class="font-serif text-[32px] text-ink mb-2">R$ 580.000</div>
+          <h3 class="text-xl font-semibold mb-2">Casa em Condomínio Fechado</h3>
+          <div class="flex items-center gap-1.5 text-sm text-ink-light mb-6">
+            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i> Cidade Ocidental, GO
+          </div>
+          <div class="flex gap-6 pt-6 border-t border-gray-200">
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="bed" class="w-4 h-4"></i> 4 Quartos
+            </div>
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="bath" class="w-4 h-4"></i> 3 Banh.
+            </div>
+            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
+              <i data-lucide="maximize" class="w-4 h-4"></i> 280 m²
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:48px"><button type="button" class="btn-primary" style="font-size:15px;padding:16px 36px">Ver todos os imóveis →</button></div>
+    
+    <div class="text-center mt-12">
+      <button type="button" class="bg-primary text-white px-10 py-4 font-bold text-base hover:bg-ink transition-smooth">Ver todos os imóveis →</button>
+    </div>
   </section>
 
-  <section class="why" id="porque">
-    <div class="why-grid">
-      <div class="why-img-wrap">
-        <div class="why-img"><img class="why-img-logo" src="assets/why-logo.png" alt="Logotipo RG Imóveis" loading="lazy" decoding="async"></div>
-        <div class="why-accent">
-          <div class="why-accent-n">+500</div>
-          <div class="why-accent-l">Famílias atendidas</div>
+  <section class="bg-cream px-[8%] py-[120px]" id="porque">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-20 items-center">
+      <div class="relative pr-10 pb-10">
+        <div class="h-[400px] lg:h-[640px] bg-ink relative overflow-hidden group">
+          <img class="w-[60%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-15 invert" src="assets/why-logo.png" alt="RG Logo">
+        </div>
+        <div class="absolute bottom-0 right-0 bg-primary text-white p-10 shadow-[20px_20px_60px_rgba(139,10,30,0.3)]">
+          <div class="font-serif text-6xl leading-none">+500</div>
+          <div class="text-xs opacity-80 mt-1">Famílias atendidas</div>
         </div>
       </div>
+      
       <div>
-        <div class="section-tag">Por que escolher a RG</div>
-        <h2 class="section-title">Seu imóvel com quem <em style="font-style:italic">realmente entende</em></h2>
-        <p class="section-sub">Somos especialistas no mercado de Luziânia e entorno, focados em resultado e satisfação
-          total do cliente.</p>
-        <div class="why-features">
+        <span class="text-xs font-bold text-primary uppercase tracking-[3px] mb-4 block">Diferenciais RG</span>
+        <h2 class="font-serif text-3xl md:text-5xl mb-6 text-ink">Seu imóvel nas mãos de quem <em class="italic">realmente entende</em></h2>
+        <p class="text-lg text-ink-light mb-12">Mais do que fechar negócios, nosso compromisso é com a realização do seu sonho com segurança jurídica e transparência total.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div class="why-item">
-            <div class="why-icon">🔑</div>
-            <div>
-              <div class="why-item-title">Atendimento exclusivo</div>
-              <div class="why-item-text">Cada cliente tem um corretor dedicado do primeiro contato à assinatura do
-                contrato.</div>
-            </div>
+            <div class="text-3xl mb-5 text-primary"><i data-lucide="gem"></i></div>
+            <h3 class="text-lg font-bold mb-3">Exclusividade em Cada Detalhe</h3>
+            <p class="text-[15px] text-ink-light leading-relaxed">Consultoria personalizada que entende suas necessidades antes de oferecer qualquer imóvel.</p>
           </div>
           <div class="why-item">
-            <div class="why-icon">📋</div>
-            <div>
-              <div class="why-item-title">Documentação facilitada</div>
-              <div class="why-item-text">Cuidamos de toda a burocracia para que você foque no que realmente importa.
-              </div>
-            </div>
+            <div class="text-3xl mb-5 text-primary"><i data-lucide="shield-check"></i></div>
+            <h3 class="text-lg font-bold mb-3">Segurança Jurídica Total</h3>
+            <p class="text-[15px] text-ink-light leading-relaxed">Documentação rigorosamente checada para que sua única preocupação seja a mudança.</p>
           </div>
           <div class="why-item">
-            <div class="why-icon">🤝</div>
-            <div>
-              <div class="why-item-title">Transparência total</div>
-              <div class="why-item-text">Sem taxas escondidas. Você sabe exatamente o que paga em cada etapa.</div>
-            </div>
+            <div class="text-3xl mb-5 text-primary"><i data-lucide="trending-up"></i></div>
+            <h3 class="text-lg font-bold mb-3">Valorização Garantida</h3>
+            <p class="text-[15px] text-ink-light leading-relaxed">Analise de mercado profunda para garantir que você faça o melhor investimento, sempre.</p>
           </div>
           <div class="why-item">
-            <div class="why-icon">📍</div>
-            <div>
-              <div class="why-item-title">Especialistas locais</div>
-              <div class="why-item-text">Conhecemos cada bairro da região — isso faz toda a diferença na negociação.
-              </div>
-            </div>
+            <div class="text-3xl mb-5 text-primary"><i data-lucide="globe"></i></div>
+            <h3 class="text-lg font-bold mb-3">Autoridade Regional</h3>
+            <p class="text-[15px] text-ink-light leading-relaxed">Líderes no mercado de Luziânia e entorno, com acesso às melhores oportunidades off-market.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section testimonials">
-    <div class="section-header" style="text-align:center">
-      <div class="section-tag">Depoimentos</div>
-      <h2 class="section-title">O que nossos clientes dizem</h2>
+  <section class="px-[8%] py-[120px] bg-white">
+    <div class="text-center mb-14 section-header">
+      <span class="text-xs font-bold text-primary uppercase tracking-[3px] mb-4 block">Depoimentos</span>
+      <h2 class="font-serif text-3xl md:text-5xl text-ink">O que nossos clientes dizem</h2>
     </div>
-    <div class="test-grid">
-      <div class="test-card">
-        <div class="test-stars" aria-label="5 estrelas">★★★★★</div>
-        <p class="test-text">"A RG Imóveis encontrou minha casa em menos de 15 dias! O atendimento foi incrível — me senti seguro em cada etapa."</p>
-        <div class="test-author">
-          <div class="test-av">MF</div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div class="test-card p-12 bg-white border border-gray-200 hover:border-primary hover:-translate-y-1.5 transition-smooth">
+        <div class="text-primary text-sm flex gap-1 mb-6">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="font-serif italic text-lg mb-8 leading-relaxed">"A RG Imóveis encontrou minha casa em menos de 15 dias! O atendimento foi incrível — me senti seguro em cada etapa."</p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-primary-light text-primary rounded-full flex items-center justify-center font-bold text-sm">MF</div>
           <div>
-            <div class="test-name">Marcos Ferreira</div>
-            <div class="test-since">Cliente desde 2022</div>
+            <div class="font-bold text-base">Marcos Ferreira</div>
+            <div class="text-xs text-gray-400">Cliente desde 2022</div>
           </div>
         </div>
       </div>
-      <div class="test-card">
-        <div class="test-stars" aria-label="5 estrelas">★★★★★</div>
-        <p class="test-text">"Vendi meu apartamento pelo valor justo e sem dor de cabeça. Equipe super profissional. Recomendo muito!"</p>
-        <div class="test-author">
-          <div class="test-av">AP</div>
+
+      <div class="test-card p-12 bg-white border border-gray-200 hover:border-primary hover:-translate-y-1.5 transition-smooth">
+        <div class="text-primary text-sm flex gap-1 mb-6">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="font-serif italic text-lg mb-8 leading-relaxed">"Vendi meu apartamento pelo valor justo e sem dor de cabeça. Equipe super profissional. Recomendo muito!"</p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-primary-light text-primary rounded-full flex items-center justify-center font-bold text-sm">AP</div>
           <div>
-            <div class="test-name">Ana Paula Souza</div>
-            <div class="test-since">Cliente desde 2023</div>
+            <div class="font-bold text-base">Ana Paula Souza</div>
+            <div class="text-xs text-gray-400">Cliente desde 2023</div>
           </div>
         </div>
       </div>
-      <div class="test-card">
-        <div class="test-stars" aria-label="5 estrelas">★★★★★</div>
-        <p class="test-text">"Aluguei pela RG e foi tudo tranquilo. Cuidaram até da vistoria e do contrato. Ótima experiência!"</p>
-        <div class="test-author">
-          <div class="test-av">RC</div>
+
+      <div class="test-card p-12 bg-white border border-gray-200 hover:border-primary hover:-translate-y-1.5 transition-smooth">
+        <div class="text-primary text-sm flex gap-1 mb-6">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <p class="font-serif italic text-lg mb-8 leading-relaxed">"Aluguei pela RG e foi tudo tranquilo. Cuidaram até da vistoria e do contrato. Ótima experiência!"</p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-primary-light text-primary rounded-full flex items-center justify-center font-bold text-sm">RC</div>
           <div>
-            <div class="test-name">Ricardo Costa</div>
-            <div class="test-since">Cliente desde 2021</div>
+            <div class="font-bold text-base">Ricardo Costa</div>
+            <div class="text-xs text-gray-400">Cliente desde 2021</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cta-section" id="contato">
-    <div class="cta-content">
-      <h2>Pronto para encontrar seu próximo lar?</h2>
-      <p>Fale agora com um dos nossos corretores e receba atendimento personalizado sem compromisso.</p>
-      <div class="cta-actions">
-        <button type="button" class="btn-white">💬 Falar no WhatsApp</button>
-        <button type="button" class="btn-outline-white">Ver imóveis disponíveis</button>
+  <section class="px-[8%] py-[120px] bg-ink text-white text-center relative overflow-hidden" id="contato">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-[30vw] font-black text-white/[0.02] pointer-events-none">RG</div>
+    <div class="relative z-10">
+      <h2 class="text-white font-serif text-4xl md:text-6xl mb-6">Pronto para encontrar seu próximo lar?</h2>
+      <p class="text-xl text-white/60 max-w-[600px] mx-auto mb-12">Fale agora com um dos nossos corretores e receba atendimento personalizado sem compromisso.</p>
+      <div class="flex flex-col md:flex-row justify-center gap-5">
+        <button type="button" class="bg-white text-ink px-12 py-5 font-bold hover:bg-primary hover:text-white transition-smooth flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" class="w-5 h-5"></i> Falar no WhatsApp
+        </button>
+        <button type="button" class="bg-transparent text-white border border-white/30 px-12 py-5 font-bold hover:border-white transition-smooth">Ver imóveis disponíveis</button>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="footer-grid">
+  <footer class="px-[8%] pt-[100px] pb-10 bg-[#080808] text-white">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-20">
       <div class="footer-brand">
-        <a class="footer-brand-logo" href="#">
-          <img class="footer-logo-img" src="assets/logo.png" alt="Logotipo RG Imóveis" loading="lazy">
-          <span class="footer-logo-text">RG <span>Imóveis</span></span>
+        <a class="flex items-center gap-3 mb-6" href="#">
+          <img class="h-10 w-auto" src="assets/logo.png" alt="RG Logo">
+          <span class="font-serif font-bold text-xl">RG <span class="text-accent">Imóveis</span></span>
         </a>
-        <p>Especialistas em conectar famílias aos seus lares ideais em Luziânia e toda a região do entorno sul.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Facebook">FB</a>
-          <a href="#" aria-label="LinkedIn">LN</a>
+        <p class="text-white/50 mb-8 max-w-[300px]">Especialistas em conectar famílias aos seus lares ideais em Luziânia e toda a região do entorno sul.</p>
+        <div class="flex gap-5">
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors">IG</a>
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors">FB</a>
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors">LN</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Imóveis</h4>
-        <ul>
-          <li><a href="#">Comprar</a></li>
-          <li><a href="#">Alugar</a></li>
-          <li><a href="#">Lançamentos</a></li>
-          <li><a href="#">Solicitar avaliação</a></li>
+      
+      <div>
+        <h4 class="text-white text-sm uppercase tracking-[2px] mb-8 font-bold">Imóveis</h4>
+        <ul class="space-y-4">
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Comprar</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Alugar</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Lançamentos</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Solicitar avaliação</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="#">Sobre nós</a></li>
-          <li><a href="#">Nossa Equipe</a></li>
-          <li><a href="#">Carreiras</a></li>
-          <li><a href="#">Blog</a></li>
+      
+      <div>
+        <h4 class="text-white text-sm uppercase tracking-[2px] mb-8 font-bold">Empresa</h4>
+        <ul class="space-y-4">
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Sobre nós</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Nossa Equipe</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Carreiras</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Blog</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Suporte</h4>
-        <ul>
-          <li><a href="#">Contato</a></li>
-          <li><a href="#">Privacidade</a></li>
-          <li><a href="#">Termos de Uso</a></li>
-          <li><a href="#">FAQ</a></li>
+      
+      <div>
+        <h4 class="text-white text-sm uppercase tracking-[2px] mb-8 font-bold">Suporte</h4>
+        <ul class="space-y-4">
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Contato</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Privacidade</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">Termos de Uso</a></li>
+          <li><a href="#" class="text-white/50 text-sm hover:text-primary transition-colors">FAQ</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    
+    <div class="flex flex-col md:flex-row justify-between pt-10 border-t border-white/5 text-[13px] text-white/30">
       <p>&copy; 2026 RG Imóveis. Todos os direitos reservados.</p>
       <p>Desenvolvido com excelência.</p>
     </div>

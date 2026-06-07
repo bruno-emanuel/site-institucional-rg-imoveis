@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Initialize Lucide Icons ---
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+
     // --- Sticky Header ---
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
@@ -31,19 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // --- Search Bar Placeholder Logic ---
-    const searchInputs = document.querySelectorAll('.search-field input');
-    searchInputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            input.parentElement.classList.add('focused');
-        });
-        input.addEventListener('blur', () => {
-            if (input.value === '') {
-                input.parentElement.classList.remove('focused');
-            }
-        });
-    });
-
     // --- Smooth Scroll Enhancements ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -53,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                const navHeight = document.querySelector('nav').offsetHeight;
+                const nav = document.querySelector('nav');
+                const navHeight = nav ? nav.offsetHeight : 0;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
                 
                 window.scrollTo({
