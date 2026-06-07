@@ -8,15 +8,31 @@ document.addEventListener('DOMContentLoaded', () => {
     initIcons();
 
     // --- Sticky Header & Active Links ---
-    const nav = document.querySelector('nav');
+    const nav = document.querySelector('#main-nav');
+    const navLogo = document.querySelector('#nav-logo');
+    const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id]');
     
     const handleScroll = () => {
-        // Sticky Header
+        // Sticky Header Logic
         if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
+            nav.classList.add('nav-scrolled', 'text-ink');
+            nav.classList.remove('text-white', 'py-6');
+            navLogo.classList.remove('brightness-0', 'invert');
+            
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-white');
+                link.classList.add('nav-link-dark');
+            });
         } else {
-            nav.classList.remove('scrolled');
+            nav.classList.remove('nav-scrolled', 'text-ink');
+            nav.classList.add('text-white', 'py-6');
+            navLogo.classList.add('brightness-0', 'invert');
+            
+            navLinks.forEach(link => {
+                link.classList.add('nav-link-white');
+                link.classList.remove('nav-link-dark');
+            });
         }
 
         // Active Link Highlight
@@ -24,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach((section) => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - 150) {
+            if (window.pageYOffset >= sectionTop - 150) {
                 current = section.getAttribute("id");
             }
         });
 
-        document.querySelectorAll(".nav-links a").forEach((a) => {
+        navLinks.forEach((a) => {
             a.classList.remove("text-primary", "opacity-100");
             if (a.getAttribute("href").includes(current) && current !== "") {
                 a.classList.add("text-primary", "opacity-100");
@@ -38,6 +54,45 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    // --- Mobile Menu Toggle ---
+    const mobileMenuToggle = document.querySelector('#mobile-menu-toggle');
+    const mobileMenu = document.querySelector('#mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('opacity-0', '-translate-y-4');
+                }, 10);
+                mobileMenuToggle.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+            } else {
+                mobileMenu.classList.add('opacity-0', '-translate-y-4');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+                mobileMenuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+            }
+            lucide.createIcons();
+        });
+
+        // Close menu on link click
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('opacity-0', '-translate-y-4');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+                mobileMenuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                lucide.createIcons();
+            });
+        });
+    }
 
     // --- Intersection Observer for Reveal Animations ---
     const revealOptions = {

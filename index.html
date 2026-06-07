@@ -38,6 +38,15 @@
           },
           transitionTimingFunction: {
             'smooth': 'cubic-bezier(0.16, 1, 0.3, 1)',
+          },
+          animation: {
+            'infinite-scroll': 'infinite-scroll 40s linear infinite',
+          },
+          keyframes: {
+            'infinite-scroll': {
+              from: { transform: 'translateX(0)' },
+              to: { transform: 'translateX(-100%)' },
+            }
           }
         }
       }
@@ -60,26 +69,61 @@
         transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
         transition-duration: 600ms;
       }
+      .nav-scrolled {
+        @apply bg-white/95 backdrop-blur-xl py-4 shadow-sm border-b border-black/5;
+      }
+      .nav-link-white {
+        @apply text-white/80 hover:text-white;
+      }
+      .nav-link-dark {
+        @apply text-ink/80 hover:text-primary;
+      }
     }
   </style>
 </head>
 
 <body class="font-sans text-ink-soft bg-white antialiased overflow-x-hidden">
 
-  <nav class="fixed top-0 left-0 w-full z-[1000] px-[8%] py-6 transition-smooth">
+  <nav id="main-nav" class="fixed top-0 left-0 w-full z-[1000] px-[8%] py-6 transition-smooth text-white">
     <div class="flex items-center justify-between">
       <a class="flex items-center gap-3" href="#">
-        <img class="h-12 w-auto" src="assets/logo.png" alt="Logotipo RG Imóveis">
-        <span class="font-serif font-black text-2xl tracking-tighter text-ink">RG <span class="text-primary">Imóveis</span></span>
+        <img class="h-10 md:h-12 w-auto brightness-0 invert transition-all duration-500" id="nav-logo" src="assets/logo.png" alt="Logotipo RG Imóveis">
+        <span class="font-serif font-black text-xl md:text-2xl tracking-tighter transition-colors duration-500" id="nav-brand">RG <span class="text-primary">Imóveis</span></span>
       </a>
-      <ul class="hidden md:flex gap-10">
-        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#">Início</a></li>
-        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#imoveis">Comprar</a></li>
-        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#imoveis">Alugar</a></li>
-        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#porque">Sobre nós</a></li>
-        <li><a class="text-sm font-semibold tracking-wide opacity-80 hover:opacity-100 hover:text-primary transition-colors" href="#contato">Contato</a></li>
+      
+      <!-- Desktop Links -->
+      <ul class="nav-links hidden md:flex gap-10">
+        <li><a class="text-sm font-semibold tracking-wide transition-smooth nav-link-white" href="#imoveis">Comprar</a></li>
+        <li><a class="text-sm font-semibold tracking-wide transition-smooth nav-link-white" href="#imoveis">Alugar</a></li>
+        <li><a class="text-sm font-semibold tracking-wide transition-smooth nav-link-white" href="#porque">Sobre nós</a></li>
+        <li><a class="text-sm font-semibold tracking-wide transition-smooth nav-link-white" href="#processo">Vender</a></li>
+        <li><a class="text-sm font-semibold tracking-wide transition-smooth nav-link-white" href="#faq">Dúvidas</a></li>
       </ul>
-      <button type="button" class="bg-ink text-white px-7 py-3 font-semibold text-sm rounded-sm hover:bg-primary transition-smooth transform hover:-translate-y-0.5">Fale Conosco</button>
+
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/5577991329865" target="_blank" class="hidden sm:flex items-center gap-2 bg-primary text-white px-6 py-2.5 font-bold text-xs md:text-sm rounded-sm hover:bg-white hover:text-ink transition-smooth transform hover:-translate-y-0.5 border border-transparent hover:border-ink/10">
+          <img src="assets/icons/whatsapp.svg" class="w-4 h-4 brightness-0 invert group-hover:brightness-100 group-hover:invert-0" alt="WhatsApp"> Fale Conosco
+        </a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="md:hidden text-inherit p-2 hover:bg-white/10 rounded-full transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 hidden md:hidden transition-all duration-300 opacity-0 -translate-y-4">
+      <ul class="flex flex-col p-[8%] gap-6">
+        <li><a class="text-lg font-serif font-bold text-ink hover:text-primary transition-colors block" href="#imoveis">Comprar</a></li>
+        <li><a class="text-lg font-serif font-bold text-ink hover:text-primary transition-colors block" href="#imoveis">Alugar</a></li>
+        <li><a class="text-lg font-serif font-bold text-ink hover:text-primary transition-colors block" href="#porque">Sobre nós</a></li>
+        <li><a class="text-lg font-serif font-bold text-ink hover:text-primary transition-colors block" href="#processo">Vender</a></li>
+        <li><a class="text-lg font-serif font-bold text-ink hover:text-primary transition-colors block" href="#faq">Dúvidas</a></li>
+        <li class="pt-4 border-t border-gray-50">
+          <button class="w-full bg-primary text-white py-4 font-bold rounded-sm">Fale Conosco</button>
+        </li>
+      </ul>
     </div>
   </nav>
 
@@ -190,106 +234,114 @@
   </div>
 
   <!-- 3. Destaques (Interesse Imediato) -->
-  <section class="px-[8%] py-[120px]" id="imoveis">
-    <div class="mb-14 section-header">
+  <section class="py-[120px] overflow-hidden" id="imoveis">
+    <div class="px-[8%] mb-14 section-header">
       <span class="text-xs font-bold text-primary uppercase tracking-[3px] mb-4 block">Portfólio Premium</span>
       <h2 class="font-serif text-3xl md:text-5xl mb-6 text-ink">Imóveis que inspiram novos começos</h2>
       <p class="text-lg text-ink-light max-w-[600px]">Uma curadoria rigorosa das melhores oportunidades residenciais em Luziânia, selecionadas por quem conhece cada detalhe da região.</p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <!-- Card 1 -->
-      <div class="card group cursor-pointer">
-        <div class="relative h-[480px] w-full overflow-hidden bg-gray-100">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-          <div class="absolute inset-0 bg-gradient-to-br from-[#1a0308] to-[#8b0a1e]"></div>
-          <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Aluguel</span>
-          <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-            <i data-lucide="heart" class="w-5 h-5"></i>
-          </button>
-        </div>
-        <div class="py-8">
-          <div class="font-serif text-[32px] text-ink mb-2">R$ 2.800 <span class="text-base text-gray-400">/mês</span></div>
-          <h3 class="text-xl font-semibold mb-2">Residência Jardim Europa</h3>
-          <div class="flex items-center gap-1.5 text-sm text-ink-light mb-6">
-            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i> Luziânia, GO
+    <!-- Carousel Wrapper -->
+    <div class="relative w-full">
+      <div id="carousel-track" class="flex gap-8 px-4 py-10 animate-infinite-scroll hover:[animation-play-state:paused]">
+        <!-- Card 1 -->
+        <div class="flex-shrink-0 w-[300px] md:w-[400px] card group cursor-pointer">
+          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+            <img src="assets/images/casa-01.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Residência Jardim Europa">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+            <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </button>
           </div>
-          <div class="flex gap-6 pt-6 border-t border-gray-200">
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="bed" class="w-4 h-4"></i> 3 Quartos
-            </div>
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="bath" class="w-4 h-4"></i> 2 Banh.
-            </div>
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="maximize" class="w-4 h-4"></i> 180 m²
+          <div class="py-6">
+            <div class="font-serif text-[28px] text-ink mb-1">R$ 450.000</div>
+            <h3 class="text-lg font-semibold mb-2">Residência Jardim Europa</h3>
+            <div class="flex items-center gap-1.5 text-xs text-ink-light">
+              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Card 2 -->
-      <div class="card group cursor-pointer">
-        <div class="relative h-[480px] w-full overflow-hidden bg-gray-100">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-          <div class="absolute inset-0 bg-gradient-to-br from-[#111] to-[#444]"></div>
-          <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
-          <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-            <i data-lucide="heart" class="w-5 h-5"></i>
-          </button>
-        </div>
-        <div class="py-8">
-          <div class="font-serif text-[32px] text-ink mb-2">R$ 320.000</div>
-          <h3 class="text-xl font-semibold mb-2">Apartamento Solar das Águas</h3>
-          <div class="flex items-center gap-1.5 text-sm text-ink-light mb-6">
-            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i> Valparaíso de Goiás, GO
+        <!-- Card 2 -->
+        <div class="flex-shrink-0 w-[300px] md:w-[400px] card group cursor-pointer">
+          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+            <img src="assets/images/casa-02.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Solar das Águas">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+            <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </button>
           </div>
-          <div class="flex gap-6 pt-6 border-t border-gray-200">
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="bed" class="w-4 h-4"></i> 2 Quartos
-            </div>
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="bath" class="w-4 h-4"></i> 1 Banh.
-            </div>
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="maximize" class="w-4 h-4"></i> 72 m²
+          <div class="py-6">
+            <div class="font-serif text-[28px] text-ink mb-1">R$ 320.000</div>
+            <h3 class="text-lg font-semibold mb-2">Apartamento Solar das Águas</h3>
+            <div class="flex items-center gap-1.5 text-xs text-ink-light">
+              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Valparaíso de Goiás, GO
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Card 3 -->
-      <div class="card group cursor-pointer">
-        <div class="relative h-[480px] w-full overflow-hidden bg-gray-100">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-          <div class="absolute inset-0 bg-gradient-to-br from-[#2A060E] to-[#1a0308]"></div>
-          <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
-          <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-            <i data-lucide="heart" class="w-5 h-5"></i>
-          </button>
-        </div>
-        <div class="py-8">
-          <div class="font-serif text-[32px] text-ink mb-2">R$ 580.000</div>
-          <h3 class="text-xl font-semibold mb-2">Casa em Condomínio Fechado</h3>
-          <div class="flex items-center gap-1.5 text-sm text-ink-light mb-6">
-            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i> Cidade Ocidental, GO
+        <!-- Card 3 -->
+        <div class="flex-shrink-0 w-[300px] md:w-[400px] card group cursor-pointer">
+          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+            <img src="assets/images/casa-03.jpeg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Residencial Alpha">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+            <span class="absolute top-6 left-6 z-20 bg-primary text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Lançamento</span>
+            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </button>
           </div>
-          <div class="flex gap-6 pt-6 border-t border-gray-200">
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="bed" class="w-4 h-4"></i> 4 Quartos
+          <div class="py-6">
+            <div class="font-serif text-[28px] text-ink mb-1">R$ 580.000</div>
+            <h3 class="text-lg font-semibold mb-2">Casa em Condomínio Fechado</h3>
+            <div class="flex items-center gap-1.5 text-xs text-ink-light">
+              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Cidade Ocidental, GO
             </div>
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="bath" class="w-4 h-4"></i> 3 Banh.
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flex-shrink-0 w-[300px] md:w-[400px] card group cursor-pointer">
+          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+            <img src="assets/images/casa-04.jpeg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Parque das Palmeiras">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+            <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </button>
+          </div>
+          <div class="py-6">
+            <div class="font-serif text-[28px] text-ink mb-1">R$ 275.000</div>
+            <h3 class="text-lg font-semibold mb-2">Sobrado Parque das Palmeiras</h3>
+            <div class="flex items-center gap-1.5 text-xs text-ink-light">
+              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
             </div>
-            <div class="flex items-center gap-2 text-sm text-ink-light font-medium">
-              <i data-lucide="maximize" class="w-4 h-4"></i> 280 m²
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="flex-shrink-0 w-[300px] md:w-[400px] card group cursor-pointer">
+          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+            <img src="assets/images/casa-05.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Mansão Central">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+            <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </button>
+          </div>
+          <div class="py-6">
+            <div class="font-serif text-[28px] text-ink mb-1">R$ 1.200.000</div>
+            <h3 class="text-lg font-semibold mb-2">Mansão Contemporânea</h3>
+            <div class="flex items-center gap-1.5 text-xs text-ink-light">
+              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
             </div>
           </div>
         </div>
       </div>
     </div>
     
-    <div class="text-center mt-12">
+    <div class="px-[8%] text-center mt-12">
       <button type="button" class="bg-primary text-white px-10 py-4 font-bold text-base hover:bg-ink transition-smooth">Ver Catálogo Completo →</button>
     </div>
   </section>
@@ -535,13 +587,25 @@
       <h2 class="text-white font-serif text-4xl md:text-6xl mb-6">Pronto para o seu próximo passo?</h2>
       <p class="text-xl text-white/60 max-w-[600px] mx-auto mb-12">Seja para vender com lucro ou comprar com segurança, nossa equipe está pronta para entregar o resultado que você espera.</p>
       <div class="flex flex-col md:flex-row justify-center gap-5">
-        <button type="button" class="bg-white text-ink px-12 py-5 font-bold hover:bg-primary hover:text-white transition-smooth flex items-center justify-center gap-2">
-            <i data-lucide="message-circle" class="w-5 h-5"></i> Consultoria Gratuita via WhatsApp
-        </button>
+        <a href="https://wa.me/5577991329865" target="_blank" class="bg-white text-ink px-12 py-5 font-bold hover:bg-primary hover:text-white transition-smooth flex items-center justify-center gap-3">
+            <img src="assets/icons/whatsapp.svg" class="w-6 h-6" alt="WhatsApp"> Consultoria Gratuita via WhatsApp
+        </a>
         <button type="button" class="bg-transparent text-white border border-white/30 px-12 py-5 font-bold hover:border-white transition-smooth">Anunciar meu Imóvel</button>
       </div>
     </div>
   </section>
+
+  <!-- Floating WhatsApp Bubble -->
+  <a href="https://wa.me/5577991329865" target="_blank" class="fixed bottom-8 right-8 z-[2000] group" aria-label="Fale conosco no WhatsApp">
+    <div class="absolute inset-0 bg-[#67C15E] rounded-full animate-ping opacity-25 group-hover:opacity-0 transition-opacity"></div>
+    <div class="relative bg-[#67C15E] p-4 rounded-full shadow-2xl transform transition-smooth group-hover:scale-110 group-hover:-rotate-12">
+      <img src="assets/icons/whatsapp.svg" class="w-8 h-8 brightness-0 invert" alt="WhatsApp">
+    </div>
+    <!-- Tooltip -->
+    <div class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-ink px-4 py-2 rounded-lg shadow-xl text-sm font-bold whitespace-nowrap opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 pointer-events-none">
+      Fale com um corretor
+    </div>
+  </a>
 
   <footer class="px-[8%] pt-[100px] pb-10 bg-[#080808] text-white">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-20">
@@ -551,10 +615,22 @@
           <span class="font-serif font-bold text-xl">RG <span class="text-accent">Imóveis</span></span>
         </a>
         <p class="text-white/50 mb-8 max-w-[300px]">Especialistas em conectar famílias aos seus lares ideais em Luziânia e toda a região do entorno sul.</p>
-        <div class="flex gap-5">
-          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors">IG</a>
-          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors">FB</a>
-          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors">LN</a>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-primary hover:bg-white/5 transition-all group" aria-label="Instagram">
+            <img src="assets/icons/instagram-svgrepo-com.svg" class="w-5 h-5 brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all" alt="Instagram">
+          </a>
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-primary hover:bg-white/5 transition-all group" aria-label="Facebook">
+            <img src="assets/icons/facebook-176-svgrepo-com.svg" class="w-5 h-5 brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all" alt="Facebook">
+          </a>
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-primary hover:bg-white/5 transition-all group" aria-label="LinkedIn">
+            <img src="assets/icons/linkedin-161-svgrepo-com.svg" class="w-5 h-5 brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all" alt="LinkedIn">
+          </a>
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-primary hover:bg-white/5 transition-all group" aria-label="TikTok">
+            <img src="assets/icons/tiktok-svgrepo-com.svg" class="w-5 h-5 brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all" alt="TikTok">
+          </a>
+          <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-primary hover:bg-white/5 transition-all group" aria-label="YouTube">
+            <img src="assets/icons/youtube-play-svgrepo-com.svg" class="w-5 h-5 brightness-0 invert group-hover:brightness-100 group-hover:invert-0 transition-all" alt="YouTube">
+          </a>
         </div>
       </div>
       
