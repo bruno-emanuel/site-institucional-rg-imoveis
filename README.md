@@ -17,7 +17,7 @@ Descrição curta do projeto RG Imóveis — um site simples para listar e exibi
 1. Clone o repositório
 
 ```bash
-git clone <URL-do-repositório>
+git clone git@github.com:bruno-emanuel/site-institucional-rg-imoveis.git
 cd RG_Imóveis
 ```
 
@@ -31,9 +31,9 @@ cd RG_Imóveis
 
 Substitua `OWNER`/`REPO` pelos valores reais do seu repositório GitHub para badges dinâmicos:
 
-- Versão liberada: `[![GitHub release](https://img.shields.io/github/v/release/OWNER/REPO)](https://github.com/OWNER/REPO/releases)`
-- Build/CI: `[![Build Status](https://img.shields.io/github/actions/workflow/status/OWNER/REPO/ci.yml?branch=main)](https://github.com/OWNER/REPO/actions)`
-- Issues abertas: `[![Issues](https://img.shields.io/github/issues/OWNER/REPO)](https://github.com/OWNER/REPO/issues)`
+- Versão liberada: `[![GitHub release](https://img.shields.io/github/v/release/bruno-emanuel/site-institucional-rg-imoveis)](https://github.com/bruno-emanuel/site-institucional-rg-imoveis/releases)`
+- Build/CI: `[![Build Status](https://img.shields.io/github/actions/workflow/status/bruno-emanuel/site-institucional-rg-imoveis/ci.yml?branch=main)](https://github.com/bruno-emanuel/site-institucional-rg-imoveis/actions)`
+- Issues abertas: `[![Issues](https://img.shields.io/github/issues/bruno-emanuel/site-institucional-rg-imoveis)](https://github.com/bruno-emanuel/site-institucional-rg-imoveis/issues)`
 
 ## Contribuição
 
