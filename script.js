@@ -7,9 +7,38 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     initIcons();
 
+    // --- Initialize Splide.js Carousel ---
+    if (typeof Splide !== 'undefined') {
+        new Splide('#property-carousel', {
+            type   : 'loop',
+            drag   : 'free',
+            focus  : 'center',
+            perPage: 3,
+            gap    : '2rem',
+            autoplay: true,
+            interval: 3000,
+            pauseOnHover: false,
+            arrows: true,
+            pagination: true,
+            breakpoints: {
+                1024: {
+                    perPage: 2,
+                },
+                640: {
+                    perPage: 1,
+                    gap: '1rem',
+                },
+            }
+        }).mount();
+        
+        // Re-init icons after Splide clones items
+        initIcons();
+    }
+
     // --- Sticky Header & Active Links ---
     const nav = document.querySelector('#main-nav');
     const navLogo = document.querySelector('#nav-logo');
+    const navBrand = document.querySelector('#nav-brand');
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id]');
     
@@ -17,13 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollY = window.scrollY;
 
         // Sticky Header Logic
-        if (scrollY > 20) {
+        if (scrollY > 10) {
             nav.classList.add('nav-scrolled', 'text-ink');
             nav.classList.remove('text-white', 'py-6');
             navLogo.classList.remove('brightness-0', 'invert');
             navBrand.classList.add('text-ink');
             navBrand.classList.remove('text-white');
-
+            
             navLinks.forEach(link => {
                 link.classList.remove('nav-link-white');
                 link.classList.add('nav-link-dark');
@@ -34,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navLogo.classList.add('brightness-0', 'invert');
             navBrand.classList.remove('text-ink');
             navBrand.classList.add('text-white');
-
+            
             navLinks.forEach(link => {
                 link.classList.add('nav-link-white');
                 link.classList.remove('nav-link-dark');
@@ -122,20 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // --- Infinite Carousel Logic ---
-    const carouselTrack = document.querySelector('#carousel-track');
-    if (carouselTrack) {
-        // Clone items for infinite effect
-        const items = Array.from(carouselTrack.children);
-        items.forEach(item => {
-            const clone = item.cloneNode(true);
-            carouselTrack.appendChild(clone);
-        });
-        
-        // Re-initialize Lucide icons for clones
-        lucide.createIcons();
-    }
-
     // --- Accordion Logic ---
     const accordions = document.querySelectorAll('.accordion-item');
     
@@ -176,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
+                const nav = document.querySelector('nav');
                 const navHeight = nav ? nav.offsetHeight : 0;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
                 

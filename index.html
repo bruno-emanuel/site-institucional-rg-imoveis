@@ -56,6 +56,10 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Splide.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/logo.png">
   
@@ -88,7 +92,7 @@
     <div class="flex items-center justify-between">
       <a class="flex items-center gap-3" href="#">
         <img class="h-10 md:h-12 w-auto brightness-0 invert transition-all duration-500" id="nav-logo" src="assets/logo.png" alt="Logotipo RG Imóveis">
-        <span class="font-serif font-black text-xl md:text-2xl tracking-tighter transition-colors duration-500" id="nav-brand">RG <span class="text-primary">Imóveis</span></span>
+        <span class="font-serif font-black text-xl md:text-2xl tracking-tighter transition-colors duration-500 text-white" id="nav-brand">RG <span class="text-primary">Imóveis</span></span>
       </a>
       
       <!-- Desktop Links -->
@@ -241,122 +245,136 @@
       <p class="text-lg text-ink-light max-w-[600px]">Uma curadoria rigorosa das melhores oportunidades residenciais no DF e Entorno, selecionadas por quem conhece cada detalhe da região.</p>
     </div>
     
-    <!-- Carousel Wrapper with Fade Mask -->
-    <div class="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-      <div id="carousel-track" class="flex flex-nowrap w-max animate-infinite-scroll">
-        <!-- Card 1 -->
-        <div class="flex-shrink-0 w-[300px] md:w-[400px] px-4 card group cursor-pointer">
-          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
-            <img src="assets/images/casa-01.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Residência Jardim Europa">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-            <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
-            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-              <i data-lucide="heart" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <div class="py-6">
-            <div class="font-serif text-[28px] text-ink mb-1">R$ 450.000</div>
-            <h3 class="text-lg font-semibold mb-2">Residência Jardim Europa</h3>
-            <div class="flex items-center gap-1.5 text-xs text-ink-light">
-              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
+    <!-- Carousel Wrapper with Splide.js -->
+    <div id="property-carousel" class="splide relative w-full" aria-label="Carrossel de Imóveis">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <!-- Slide 1 -->
+          <li class="splide__slide">
+            <div class="card group cursor-pointer">
+              <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+                <img src="assets/images/casa-01.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Residência Jardim Europa">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+                <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+                <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </button>
+              </div>
+              <div class="py-6">
+                <div class="font-serif text-[28px] text-ink mb-1">R$ 450.000</div>
+                <h3 class="text-lg font-semibold mb-2">Residência Jardim Europa</h3>
+                <div class="flex items-center gap-1.5 text-xs text-ink-light">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <!-- Card 2 -->
-        <div class="flex-shrink-0 w-[300px] md:w-[400px] px-4 card group cursor-pointer">
-          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
-            <img src="assets/images/casa-02.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Solar das Águas">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-            <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
-            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-              <i data-lucide="heart" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <div class="py-6">
-            <div class="font-serif text-[28px] text-ink mb-1">R$ 320.000</div>
-            <h3 class="text-lg font-semibold mb-2">Apartamento Solar das Águas</h3>
-            <div class="flex items-center gap-1.5 text-xs text-ink-light">
-              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Valparaíso de Goiás, GO
+          <!-- Slide 2 -->
+          <li class="splide__slide">
+            <div class="card group cursor-pointer">
+              <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+                <img src="assets/images/casa-02.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Solar das Águas">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+                <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+                <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </button>
+              </div>
+              <div class="py-6">
+                <div class="font-serif text-[28px] text-ink mb-1">R$ 320.000</div>
+                <h3 class="text-lg font-semibold mb-2">Apartamento Solar das Águas</h3>
+                <div class="flex items-center gap-1.5 text-xs text-ink-light">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Valparaíso de Goiás, GO
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <!-- Card 3 -->
-        <div class="flex-shrink-0 w-[300px] md:w-[400px] px-4 card group cursor-pointer">
-          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
-            <img src="assets/images/casa-03.jpeg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Residencial Alpha">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-            <span class="absolute top-6 left-6 z-20 bg-primary text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Lançamento</span>
-            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-              <i data-lucide="heart" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <div class="py-6">
-            <div class="font-serif text-[28px] text-ink mb-1">R$ 580.000</div>
-            <h3 class="text-lg font-semibold mb-2">Casa em Condomínio Fechado</h3>
-            <div class="flex items-center gap-1.5 text-xs text-ink-light">
-              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Cidade Ocidental, GO
+          <!-- Slide 3 -->
+          <li class="splide__slide">
+            <div class="card group cursor-pointer">
+              <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+                <img src="assets/images/casa-03.jpeg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Residencial Alpha">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+                <span class="absolute top-6 left-6 z-20 bg-primary text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Lançamento</span>
+                <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </button>
+              </div>
+              <div class="py-6">
+                <div class="font-serif text-[28px] text-ink mb-1">R$ 580.000</div>
+                <h3 class="text-lg font-semibold mb-2">Casa em Condomínio Fechado</h3>
+                <div class="flex items-center gap-1.5 text-xs text-ink-light">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Cidade Ocidental, GO
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <!-- Card 4 -->
-        <div class="flex-shrink-0 w-[300px] md:w-[400px] px-4 card group cursor-pointer">
-          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
-            <img src="assets/images/casa-04.jpeg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Parque das Palmeiras">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-            <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
-            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-              <i data-lucide="heart" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <div class="py-6">
-            <div class="font-serif text-[28px] text-ink mb-1">R$ 275.000</div>
-            <h3 class="text-lg font-semibold mb-2">Sobrado Parque das Palmeiras</h3>
-            <div class="flex items-center gap-1.5 text-xs text-ink-light">
-              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
+          <!-- Slide 4 -->
+          <li class="splide__slide">
+            <div class="card group cursor-pointer">
+              <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+                <img src="assets/images/casa-04.jpeg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Parque das Palmeiras">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+                <span class="absolute top-6 left-6 z-20 bg-white text-ink px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+                <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </button>
+              </div>
+              <div class="py-6">
+                <div class="font-serif text-[28px] text-ink mb-1">R$ 275.000</div>
+                <h3 class="text-lg font-semibold mb-2">Sobrado Parque das Palmeiras</h3>
+                <div class="flex items-center gap-1.5 text-xs text-ink-light">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <!-- Card 5 -->
-        <div class="flex-shrink-0 w-[300px] md:w-[400px] px-4 card group cursor-pointer">
-          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
-            <img src="assets/images/casa-07.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Mansão Central">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-            <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
-            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-              <i data-lucide="heart" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <div class="py-6">
-            <div class="font-serif text-[28px] text-ink mb-1">R$ 1.200.000</div>
-            <h3 class="text-lg font-semibold mb-2">Mansão Contemporânea</h3>
-            <div class="flex items-center gap-1.5 text-xs text-ink-light">
-              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
+          <!-- Slide 5 -->
+          <li class="splide__slide">
+            <div class="card group cursor-pointer">
+              <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+                <img src="assets/images/casa-07.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Mansão Central">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+                <span class="absolute top-6 left-6 z-20 bg-ink text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Venda</span>
+                <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </button>
+              </div>
+              <div class="py-6">
+                <div class="font-serif text-[28px] text-ink mb-1">R$ 1.200.000</div>
+                <h3 class="text-lg font-semibold mb-2">Mansão Contemporânea</h3>
+                <div class="flex items-center gap-1.5 text-xs text-ink-light">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Luziânia, GO
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <!-- Card 6 -->
-        <div class="flex-shrink-0 w-[300px] md:w-[400px] px-4 card group cursor-pointer">
-          <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
-            <img src="assets/images/casa-10.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Condomínio Imperial">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
-            <span class="absolute top-6 left-6 z-20 bg-primary text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Oportunidade</span>
-            <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
-              <i data-lucide="heart" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <div class="py-6">
-            <div class="font-serif text-[28px] text-ink mb-1">R$ 890.000</div>
-            <h3 class="text-lg font-semibold mb-2">Residencial Imperial</h3>
-            <div class="flex items-center gap-1.5 text-xs text-ink-light">
-              <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Valparaíso, GO
+          <!-- Slide 6 -->
+          <li class="splide__slide">
+            <div class="card group cursor-pointer">
+              <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
+                <img src="assets/images/casa-10.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Condomínio Imperial">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 z-10"></div>
+                <span class="absolute top-6 left-6 z-20 bg-primary text-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider">Oportunidade</span>
+                <button class="absolute top-6 right-6 z-20 w-11 h-11 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-primary transition-smooth" aria-label="Favoritar">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </button>
+              </div>
+              <div class="py-6">
+                <div class="font-serif text-[28px] text-ink mb-1">R$ 890.000</div>
+                <h3 class="text-lg font-semibold mb-2">Residencial Imperial</h3>
+                <div class="flex items-center gap-1.5 text-xs text-ink-light">
+                  <i data-lucide="map-pin" class="w-3 h-3 text-primary"></i> Valparaíso, GO
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
     
