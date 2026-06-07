@@ -61,6 +61,37 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
+    // --- Accordion Logic ---
+    const accordions = document.querySelectorAll('.accordion-item');
+    
+    accordions.forEach(item => {
+        const toggle = item.querySelector('.accordion-toggle');
+        const content = item.querySelector('.accordion-content');
+        
+        toggle.addEventListener('click', () => {
+            const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+            
+            // Close other items
+            accordions.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.querySelector('.accordion-toggle').setAttribute('aria-expanded', 'false');
+                    otherItem.querySelector('.accordion-content').style.maxHeight = '0';
+                    otherItem.classList.remove('border-primary/30', 'ring-1', 'ring-primary/10');
+                }
+            });
+            
+            // Toggle current item
+            toggle.setAttribute('aria-expanded', !isOpen);
+            content.style.maxHeight = !isOpen ? content.scrollHeight + "px" : "0";
+            
+            if (!isOpen) {
+                item.classList.add('border-primary/30', 'ring-1', 'ring-primary/10');
+            } else {
+                item.classList.remove('border-primary/30', 'ring-1', 'ring-primary/10');
+            }
+        });
+    });
+
     // --- Smooth Scroll Enhancements ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
