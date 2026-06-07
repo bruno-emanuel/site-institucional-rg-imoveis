@@ -45,7 +45,7 @@
           keyframes: {
             'infinite-scroll': {
               from: { transform: 'translateX(0)' },
-              to: { transform: 'translateX(-100%)' },
+              to: { transform: 'translateX(-50%)' },
             }
           }
         }
@@ -242,8 +242,8 @@
     </div>
     
     <!-- Carousel Wrapper -->
-    <div class="relative w-full">
-      <div id="carousel-track" class="flex gap-8 px-4 py-10 animate-infinite-scroll hover:[animation-play-state:paused]">
+    <div class="relative w-full overflow-hidden">
+      <div id="carousel-track" class="flex flex-nowrap w-max gap-8 px-4 py-10 animate-infinite-scroll hover:[animation-play-state:paused]">
         <!-- Card 1 -->
         <div class="flex-shrink-0 w-[300px] md:w-[400px] card group cursor-pointer">
           <div class="relative h-[300px] md:h-[480px] w-full overflow-hidden bg-gray-100 rounded-sm">
