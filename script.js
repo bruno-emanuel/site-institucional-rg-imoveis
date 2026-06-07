@@ -14,12 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section[id]');
     
     const handleScroll = () => {
+        const scrollY = window.scrollY;
+
         // Sticky Header Logic
-        if (window.scrollY > 50) {
+        if (scrollY > 20) {
             nav.classList.add('nav-scrolled', 'text-ink');
             nav.classList.remove('text-white', 'py-6');
             navLogo.classList.remove('brightness-0', 'invert');
-            
+            navBrand.classList.add('text-ink');
+            navBrand.classList.remove('text-white');
+
             navLinks.forEach(link => {
                 link.classList.remove('nav-link-white');
                 link.classList.add('nav-link-dark');
@@ -28,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.remove('nav-scrolled', 'text-ink');
             nav.classList.add('text-white', 'py-6');
             navLogo.classList.add('brightness-0', 'invert');
-            
+            navBrand.classList.remove('text-ink');
+            navBrand.classList.add('text-white');
+
             navLinks.forEach(link => {
                 link.classList.add('nav-link-white');
                 link.classList.remove('nav-link-dark');
@@ -40,14 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach((section) => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= sectionTop - 150) {
+            if (scrollY >= sectionTop - 200) {
                 current = section.getAttribute("id");
             }
         });
 
         navLinks.forEach((a) => {
             a.classList.remove("text-primary", "opacity-100");
-            if (a.getAttribute("href").includes(current) && current !== "") {
+            if (a.getAttribute("href") === `#${current}` && current !== "") {
                 a.classList.add("text-primary", "opacity-100");
             }
         });
