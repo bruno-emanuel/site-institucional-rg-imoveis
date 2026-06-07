@@ -1,9 +1,27 @@
-/* --- Complex Animations --- */
-@keyframes float {
-    0%, 100% { transform: translateY(-50%) translateX(0); }
-    50% { transform: translateY(-52%) translateX(-10px); }
+/* --- Core Design Variables --- */
+:root {
+    --primary: #8B0A1E;
+    --primary-dark: #6B0818;
+    --accent: #E8637A;
+    --ink: #111111;
 }
 
+/* --- Layout Base --- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Navigation Custom State --- */
+nav.scrolled {
+    @apply bg-white/95 backdrop-blur-xl py-4 shadow-sm border-b border-black/5;
+}
+
+/* --- Entrance Animations (Reveal-on-Scroll) --- */
 .reveal-init {
     opacity: 0;
     transform: translateY(30px);
@@ -26,7 +44,15 @@
 .grid > .card:nth-child(2) { transition-delay: 0.2s; }
 .grid > .card:nth-child(3) { transition-delay: 0.3s; }
 
-/* Custom Scrolled State for Nav (Tailwind classes can also be applied via JS) */
-nav.scrolled {
-    @apply bg-white/95 backdrop-blur-xl py-4 shadow-sm border-b border-black/5;
+/* Custom Keyframes */
+@keyframes float {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-52%) translateX(-10px); }
+}
+
+/* --- Component Overrides --- */
+/* Fix for Lucide icons inside flex containers */
+svg {
+    display: inline-block;
+    vertical-align: middle;
 }

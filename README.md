@@ -1,46 +1,47 @@
-# RG Imóveis
+# RG Imóveis — Landing Page Editorial de Alto Padrão
 
-[![Versão](https://img.shields.io/badge/version-1.0.0-blue)](#)
-[![License](https://img.shields.io/badge/license-MIT-green)](#)
-[![Último commit](https://img.shields.io/badge/last%20commit-unknown-lightgrey)](#)
-[![Issues](https://img.shields.io/badge/issues-none-lightgrey)](#)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4+-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-Latest-FDE047?logo=lucide&logoColor=black)](https://lucide.dev/)
+[![Status](https://img.shields.io/badge/Status-Production--Ready-success)](#)
 
-Descrição curta do projeto RG Imóveis — um site simples para listar e exibir imóveis.
+Esta é a nova identidade digital da **RG Imóveis**, transformada de um template genérico para uma experiência **Editorial Luxury**. O site foi reconstruído com foco em performance, estética premium e conversão de leads.
 
-**Recursos**
-- Layout responsivo básico
-- Página principal com listagem de imóveis
-- Uso mínimo de JavaScript
+## ✨ Destaques do Projeto
 
-## Instalação
+- **Estética Editorial Luxury:** Paleta de cores sofisticada (Deep Burgundy & Ink), tipografia refinada e layout assimétrico.
+- **Tailwind CSS & Forms Plugin:** Interface moderna e responsiva utilizando utilitários de CSS de última geração.
+- **Lucide Icons:** Substituição total de emojis por ícones vetoriais profissionais.
+- **Reveal-on-Scroll:** Animações de entrada suaves que aumentam a percepção de valor da marca.
+- **Barra de Busca Inteligente:** Design customizado com estados de foco interativos e campos otimizados.
 
-1. Clone o repositório
+## 🛠️ Tecnologias Utilizadas
 
+- **HTML5 Semântico:** Estrutura otimizada para SEO e acessibilidade.
+- **Tailwind CSS (v3.4+):** Configuração de tema personalizado e plugin de formulários.
+- **Lucide Icons:** Biblioteca de ícones via CDN.
+- **JavaScript (ES6+):** Lógica customizada para Sticky Header, Intersection Observer (animações) e Smooth Scroll.
+- **Google Fonts:** Playfair Display (Serif) e DM Sans (Sans).
+
+## 🚀 Como Visualizar
+
+O projeto é inteiramente estático e não requer instalação de dependências.
+
+1. Clone o repositório:
 ```bash
 git clone git@github.com:bruno-emanuel/site-institucional-rg-imoveis.git
-cd RG_Imóveis
 ```
+2. Abra o arquivo `index.html` em qualquer navegador moderno.
 
-2. Abra `index.html` no navegador.
+## 📂 Estrutura de Arquivos
 
-## Uso
+- `index.html`: Estrutura principal com Tailwind e Lucide via CDN.
+- `style.css`: Estilos customizados para animações e estados complexos.
+- `script.js`: Interatividade e inicialização de componentes.
+- `assets/`: Logotipos, imagens e recursos visuais.
 
-- Edite `index.html`, `style.css` e `script.js` para ajustar conteúdo e comportamento do site.
+## ✒️ Licença
 
-## Badges (exemplos)
+Este projeto está sob a licença MIT.
 
-Substitua `OWNER`/`REPO` pelos valores reais do seu repositório GitHub para badges dinâmicos:
-
-- Versão liberada: `[![GitHub release](https://img.shields.io/github/v/release/bruno-emanuel/site-institucional-rg-imoveis)](https://github.com/bruno-emanuel/site-institucional-rg-imoveis/releases)`
-- Build/CI: `[![Build Status](https://img.shields.io/github/actions/workflow/status/bruno-emanuel/site-institucional-rg-imoveis/ci.yml?branch=main)](https://github.com/bruno-emanuel/site-institucional-rg-imoveis/actions)`
-- Issues abertas: `[![Issues](https://img.shields.io/github/issues/bruno-emanuel/site-institucional-rg-imoveis)](https://github.com/bruno-emanuel/site-institucional-rg-imoveis/issues)`
-
-## Contribuição
-
-- Abra issues para bugs ou novas features.
-- Faça forks e pull requests.
-
-## Licença
-
-Este projeto está sob a licença MIT — veja o arquivo `LICENSE` para detalhes.
-Meu projeto
+---
+Desenvolvido com excelência por **Gemini CLI**.
